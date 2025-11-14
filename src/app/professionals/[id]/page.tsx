@@ -1,10 +1,11 @@
 import Button from '@/components/Button';
 import Link from 'next/link';
 
-interface ProfessionalDetailPageProps {
+export interface ProfessionalDetailPageProps {
   params: {
     id: string;
   };
+  searchParams?: Record<string, string | string[] | undefined>;
 }
 
 export default function ProfessionalDetailPage({ params }: ProfessionalDetailPageProps) {
@@ -19,7 +20,8 @@ export default function ProfessionalDetailPage({ params }: ProfessionalDetailPag
     location: 'Tamanique',
     workSchedule: 'Lunes a Viernes',
     workHours: '7:00 am - 5:00 pm',
-    description: 'Hola! Mi nombre es José Ramírez, y soy un albañil con más de 15 años de experiencia. Me especializo en construcción de casas, muros y pequeñas estructuras. He trabajado en más de 100 proyectos de construcción en diferentes comunidades. Soy responsable, trabajador y siempre doy lo mejor de mí para que mis clientes estén felices.',
+    description:
+      'Hola! Mi nombre es José Ramírez, y soy un albañil con más de 15 años de experiencia. Me especializo en construcción de casas, muros y pequeñas estructuras. He trabajado en más de 100 proyectos de construcción en diferentes comunidades. Soy responsable, trabajador y siempre doy lo mejor de mí para que mis clientes estén felices.',
     services: [
       'Construcción de casas',
       'Construcción de muros',
@@ -35,10 +37,10 @@ export default function ProfessionalDetailPage({ params }: ProfessionalDetailPag
       { author: 'María Fernanda', text: 'Un verdadero experto, solucionó el problema en poco tiempo.' },
     ],
     rating: 5,
-    imageUrl: '/images/professionals/jose-ramirez.jpg', // Si tienes la imagen
+    imageUrl: '/images/professionals/jose-ramirez.jpg',
   };
 
-  if (!professional || professional.id !== id) { // Simulación para cuando el ID no coincida
+  if (!professional || professional.id !== id) {
     return (
       <div className="container mx-auto py-12 text-center">
         <h1 className="text-3xl font-bold text-red-700">Profesional no encontrado</h1>
@@ -83,25 +85,41 @@ export default function ProfessionalDetailPage({ params }: ProfessionalDetailPag
 
         {/* Datos Personales */}
         <section className="mb-8">
-          <h2 className="text-2xl font-bold text-gray-800 border-b-2 border-red-700 pb-2 mb-4">Datos Personales</h2>
+          <h2 className="text-2xl font-bold text-gray-800 border-b-2 border-red-700 pb-2 mb-4">
+            Datos Personales
+          </h2>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4 text-gray-700">
-            <p><span className="font-semibold">Edad:</span> {professional.age} años</p>
-            <p><span className="font-semibold">Género:</span> {professional.gender}</p>
-            <p><span className="font-semibold">Ubicación:</span> {professional.location}</p>
-            <p><span className="font-semibold">Horario de trabajo:</span> {professional.workSchedule}</p>
-            <p><span className="font-semibold">Horas de trabajo:</span> {professional.workHours}</p>
+            <p>
+              <span className="font-semibold">Edad:</span> {professional.age} años
+            </p>
+            <p>
+              <span className="font-semibold">Género:</span> {professional.gender}
+            </p>
+            <p>
+              <span className="font-semibold">Ubicación:</span> {professional.location}
+            </p>
+            <p>
+              <span className="font-semibold">Horario de trabajo:</span> {professional.workSchedule}
+            </p>
+            <p>
+              <span className="font-semibold">Horas de trabajo:</span> {professional.workHours}
+            </p>
           </div>
         </section>
 
         {/* Descripción */}
         <section className="mb-8">
-          <h2 className="text-2xl font-bold text-gray-800 border-b-2 border-red-700 pb-2 mb-4">Descripción</h2>
+          <h2 className="text-2xl font-bold text-gray-800 border-b-2 border-red-700 pb-2 mb-4">
+            Descripción
+          </h2>
           <p className="text-gray-700 leading-relaxed">{professional.description}</p>
         </section>
 
         {/* Servicios */}
         <section className="mb-8">
-          <h2 className="text-2xl font-bold text-gray-800 border-b-2 border-red-700 pb-2 mb-4">Servicios</h2>
+          <h2 className="text-2xl font-bold text-gray-800 border-b-2 border-red-700 pb-2 mb-4">
+            Servicios
+          </h2>
           <ul className="list-disc list-inside text-gray-700 grid grid-cols-1 md:grid-cols-2 gap-2">
             {professional.services.map((service, index) => (
               <li key={index}>{service}</li>
@@ -109,9 +127,11 @@ export default function ProfessionalDetailPage({ params }: ProfessionalDetailPag
           </ul>
         </section>
 
-        {/* Comentarios de la gente */}
+        {/* Comentarios */}
         <section>
-          <h2 className="text-2xl font-bold text-gray-800 border-b-2 border-red-700 pb-2 mb-4">Comentarios de la gente</h2>
+          <h2 className="text-2xl font-bold text-gray-800 border-b-2 border-red-700 pb-2 mb-4">
+            Comentarios de la gente
+          </h2>
           <div className="space-y-4">
             {professional.comments.map((comment, index) => (
               <div key={index} className="bg-gray-50 p-4 rounded-lg shadow-sm">
